@@ -10,19 +10,19 @@ This **Image/Dockerfile** aims to create a container for **Ubuntu 16.04** with *
 You can build this **Dockerfile** yourself:
 
 ```
-sudo docker build -t "bistormllc/ubuntu-novnc-dotnet" .
+docker = build -t "bistormllc/ubuntu-novnc-dotnet" .
 ```
 
 Or, just pull my **image**:
 
 ```
-sudo docker pull bistormllc/ubuntu-novnc-dotnet
+docker = pull bistormllc/ubuntu-novnc-dotnet
 ```
 
 The default usage of this image is:
 
 ```
-sudo docker run -itd -p 80:6080 bistormllc/ubuntu-novnc-dotnet
+docker = run -itd -p 80:6080 bistormllc/ubuntu-novnc-dotnet
 ```
 
 Wait for a few second, you can access http://localhost/vnc.html and see this screen:
@@ -35,7 +35,7 @@ Wait for a few second, you can access http://localhost/vnc.html and see this scr
 In default, the **password** will create randomly, to find the password, please using the following command:
 
 ```
-sudo docker exec $CONTAINER_ID cat /home/ubuntu/password.txt
+docker = exec $CONTAINER_ID cat /home/ubuntu/password.txt
 ```
 
 And you can use this password to log in into this container.
@@ -53,7 +53,7 @@ This image contains 3 input argument:
 
    You can set your own user password as you like:
    ```
-   sudo docker run -itd -p 80:6080 -e PASSWORD=$YOUR_PASSWORD bistormllc/ubuntu-novnc-dotnet
+   docker = run -itd -p 80:6080 -e PASSWORD=$YOUR_PASSWORD bistormllc/ubuntu-novnc-dotnet
    ```
    Now, you can user your own password to log in.
 
@@ -61,7 +61,7 @@ This image contains 3 input argument:
 
    In default, the user **ubuntu** will not be the sudoer, but if you need, you can use this command:
    ```
-   sudo docker run -itd -p 80:6080 -e SUDO=yes bistormllc/ubuntu-novnc-dotnet
+   docker = run -itd -p 80:6080 -e SUDO=yes bistormllc/ubuntu-novnc-dotnet
    ```
 
    This command will grant the **sudo** to user **ubuntu**.
@@ -87,13 +87,13 @@ This image contains 3 input argument:
    To enable Ngrok, use following command:
 
    ```
-   sudo docker run -itd -p 80:6080 -e NGROK=yes bistormllc/ubuntu-novnc-dotnet
+   docker = run -itd -p 80:6080 -e NGROK=yes bistormllc/ubuntu-novnc-dotnet
    ```
 
    And find the link address:
 
    ```
-   sudo docker exec $CONTAINER_ID cat /home/ubuntu/ngrok/Ngrok_URL.txt
+   docker = exec $CONTAINER_ID cat /home/ubuntu/ngrok/Ngrok_URL.txt
    ```
 
    **NGROK=YES**, **NGROK=Yes**, **NGROK=Y**, **NGROK=y** are also supported.
@@ -108,8 +108,8 @@ The default setting of screen siz is 1600x900.
 You can change screen by using following command, this will change screen size to 1024x768:
 
 ```
-sudo docker exec $CONTAINER_ID sed -i "s|-geometry 1600x900|-geometry 1024x768|g" /etc/supervisor/conf.d/supervisor.conf
-sudo docker restart $CONTAINER_ID
+docker = exec $CONTAINER_ID sed -i "s|-geometry 1600x900|-geometry 1024x768|g" /etc/supervisor/conf.d/supervisor.conf
+docker = restart $CONTAINER_ID
 ```
 
 
