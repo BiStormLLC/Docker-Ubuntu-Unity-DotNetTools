@@ -1,4 +1,4 @@
-# Docker-Ubuntu-Unity-noVNC
+# Docker-Ubuntu-Unity-DotNetTools
 
 Dockfile for Ubuntu with Unity desktop environment and noVNC. 
 
@@ -27,7 +27,7 @@ sudo docker run -itd -p 80:6080 bistormllc/ubuntu-novnc-dotnet
 
 Wait for a few second, you can access http://localhost/vnc.html and see this screen:
 
-![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-noVNC/raw/master/noVNC.png "vnc.html")
+![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-DotNetTools/raw/master/noVNC.png "vnc.html")
 
 
 ### Password
@@ -42,7 +42,7 @@ And you can use this password to log in into this container.
 
 After log in, you can see this screen:
 
-![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-noVNC/raw/master/desktop.png "Unity desktop")
+![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-DotNetTools/raw/master/desktop.png "Unity desktop")
 
 
 ## Arguments
@@ -74,7 +74,7 @@ This image contains 3 input argument:
    See "man sudo_root" for details.
    ```
 
-   ![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-noVNC/raw/master/sudo.png "sudo")
+   ![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-DotNetTools/raw/master/sudo.png "sudo")
 
    **Caution!!** allow your user as sudoer may cause security issues, use it carefully.
 
