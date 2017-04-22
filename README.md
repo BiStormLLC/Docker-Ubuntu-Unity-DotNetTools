@@ -13,7 +13,7 @@ You can build this **Dockerfile** yourself:
 docker = build -t "bistormllc/ubuntu-novnc-dotnet" .
 ```
 
-Or, just pull my **image**:
+Or, just pull the **image**:
 
 ```
 docker = pull bistormllc/ubuntu-novnc-dotnet
@@ -25,22 +25,22 @@ The default usage of this image is:
 docker = run -itd -p 80:6080 bistormllc/ubuntu-novnc-dotnet
 ```
 
-Wait for a few second, you can access http://localhost/vnc.html and see this screen:
+Wait for a few seconds for services to start, then you can access http://localhost/vnc.html to see this screen:
 
 ![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-DotNetTools/raw/master/noVNC.png "vnc.html")
 
 
 ### Password
 
-In default, the **password** will create randomly, to find the password, please using the following command:
+By default, the ubuntu user **password** will be created randomly. To find the password, please using the following command:
 
 ```
 docker = exec $CONTAINER_ID cat /home/ubuntu/password.txt
 ```
 
-And you can use this password to log in into this container.
+You can use this password to log into this container.
 
-After log in, you can see this screen:
+After log in, you should be able to see this screen:
 
 ![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-DotNetTools/raw/master/desktop.png "Unity desktop")
 
@@ -61,14 +61,14 @@ This image contains 3 input argument:
 
    In default, the user **ubuntu** will not be the sudoer, but if you need, you can use this command:
    ```
-   docker = run -itd -p 80:6080 -e SUDO=yes bistormllc/ubuntu-novnc-dotnet
+   docker run -itd -p 80:6080 -e SUDO=yes bistormllc/ubuntu-novnc-dotnet
    ```
 
    This command will grant the **sudo** to user **ubuntu**.
 
    And use **SUDO=YES**, **SUDO=Yes**, **SUDO=Y**, **SUDO=y** are also supported.
 
-   To check the sudo is work , when you open **xTerm** it should show following message:
+   To check that sudo is working, when you open **xTerm** it should show following message:
    ```
    To run a command as administrator (user "root"), use "sudo <command>".
    See "man sudo_root" for details.
@@ -87,13 +87,13 @@ This image contains 3 input argument:
    To enable Ngrok, use following command:
 
    ```
-   docker = run -itd -p 80:6080 -e NGROK=yes bistormllc/ubuntu-novnc-dotnet
+   docker run -itd -p 80:6080 -e NGROK=yes bistormllc/ubuntu-novnc-dotnet
    ```
 
    And find the link address:
 
    ```
-   docker = exec $CONTAINER_ID cat /home/ubuntu/ngrok/Ngrok_URL.txt
+   docker exec $CONTAINER_ID cat /home/ubuntu/ngrok/Ngrok_URL.txt
    ```
 
    **NGROK=YES**, **NGROK=Yes**, **NGROK=Y**, **NGROK=y** are also supported.
@@ -103,7 +103,7 @@ This image contains 3 input argument:
 
 ## Screen size
 
-The default setting of screen siz is 1600x900.
+The default setting of screen size is 1600x900.
 
 You can change screen by using following command, this will change screen size to 1024x768:
 

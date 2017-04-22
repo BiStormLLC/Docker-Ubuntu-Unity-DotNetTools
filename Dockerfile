@@ -35,5 +35,5 @@ RUN apt-get update \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 6080 5901 4040
+EXPOSE 6080 5901 4040 3389
 CMD ["/bin/bash", "/home/ubuntu/startup.sh"]

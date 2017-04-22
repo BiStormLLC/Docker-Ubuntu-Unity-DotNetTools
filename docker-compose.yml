@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    
+  ubuntu:
+    image: bistormllc/ubuntu-novnc-dotnet
+    volumes:
+     - .:/var/www
+    restart: always
+    container_name: ubuntu8181
+    environment:
+     SUDO: Y
+     PASSWORD: ubuntu8181
+     NGROK: Y
+    ports:
+     - 8181:6080
+     - 6969:5901
