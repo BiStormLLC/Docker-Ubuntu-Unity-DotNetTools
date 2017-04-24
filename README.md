@@ -3,6 +3,8 @@
 This Docker builder repository was forked from https://github.com/chenjr0719/Docker-Ubuntu-Unity-noVNC
 The Dockerfile builds **FROM** this original Dockerhub image: chenjr0719/ubuntu-unity-novnc
 
+We created a Lab to get started on your first ASP .NET Core C# Angular app
+http://blog.bistorm.org/2017/04/24/using-the-duud-net-core-development-environment/
 
 ## Description
 Dockfile for Ubuntu with Unity desktop environment accessible via noVNC, with Firefox, .NET Core and Visual Studio Code. 
