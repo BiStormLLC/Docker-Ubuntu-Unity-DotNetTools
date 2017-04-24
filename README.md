@@ -1,28 +1,65 @@
 # Docker-Ubuntu-Unity-DotNetTools
 
-Dockfile for Ubuntu with Unity desktop environment and noVNC. 
+This Docker builder repository was forked from https://github.com/chenjr0719/Docker-Ubuntu-Unity-noVNC
+The Dockerfile builds **FROM** this original Dockerhub image: chenjr0719/ubuntu-unity-novnc
 
-This **Image/Dockerfile** aims to create a container for **Ubuntu 16.04** with **Unity Desktop** and using **TightVNCServer**, **noVNC**, **Ngrok(Optional)** which allow user use browser to log in into this container.
+
+## Description
+Dockfile for Ubuntu with Unity desktop environment accessible via noVNC, with Firefox, .NET Core and Visual Studio Code. 
+
+Not full baked: 
+* Docker Machine pre-installed for creating images of projects
+* NVM for switching between different NodeJS versions
+
+### A note on pre-installed packages 
+The build of this Docker image implements three .deb files:
+*VS Studio Code 1.11.2 for amd64: code_1.11.2-1492070517_amd64.deb
+*Docker CE 17.04 for amd64: docker-ce_17.04.0-ce-0-ubuntu-xenial_amd64
+*TigerVNC is installed as a .deb via the original chenjr0719/ubuntu-unity-novnc image
+
+**Where we could make efforts**, .deb files are validated during the build to prevent binary hacks.
+
+This **Image/Dockerfile** creates a container for **Ubuntu Xenial 16.04** with **Unity Desktop** and using **TightVNCServer**, **noVNC**, **Ngrok(Optional)** 
+which allows HTML5 browsers to log in into this container and collaboratively write .NET Core applications.
 
 
 ## How to use?
 
+To create an immediately-accessible development environment container with **SUDO** access and **Ngrok** enabled, run:
+```
+$ docker-compose up
+```
+*see the docker-compose.yml file for login and port information*
+
+### Note
+*For security reasons, the Docker Compose file pushes the NoVNC connection to port 8181 on the Docker Host
+*The Docker Compose file creates a volume map of the cloned directory to /var/www for working with files on the Docker host
+*Wait for a few seconds for services to start, then access http://localhost:8181/vnc.html to see this screen:
+![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-DotNetTools/raw/master/noVNC.png "vnc.html")
+
+### Accessing tools
+*Terminator terminal and Visual Studio code are accessible by searching within Unity's app search
+*Firefox is bookmarked to the docking bar of Unity
+*npm, yo, dotnet and webpack should all be accessible via commandline
+
+## DIY
 You can build this **Dockerfile** yourself:
 
 ```
-docker = build -t "bistormllc/ubuntu-novnc-dotnet" .
+$ docker build -t "bistormllc/ubuntu-novnc-dotnet" .
 ```
 
+## From DockerHub
 Or, just pull the **image**:
 
 ```
-docker = pull bistormllc/ubuntu-novnc-dotnet
+$ docker pull bistormllc/ubuntu-novnc-dotnet
 ```
 
 The default usage of this image is:
 
 ```
-docker = run -itd -p 80:6080 bistormllc/ubuntu-novnc-dotnet
+$ docker run -d -p 80:6080 bistormllc/ubuntu-novnc-dotnet
 ```
 
 Wait for a few seconds for services to start, then you can access http://localhost/vnc.html to see this screen:
@@ -35,7 +72,7 @@ Wait for a few seconds for services to start, then you can access http://localho
 By default, the ubuntu user **password** will be created randomly. To find the password, please using the following command:
 
 ```
-docker = exec $CONTAINER_ID cat /home/ubuntu/password.txt
+$ docker exec $CONTAINER_ID cat /home/ubuntu/password.txt
 ```
 
 You can use this password to log into this container.
@@ -53,7 +90,7 @@ This image contains 3 input argument:
 
    You can set your own user password as you like:
    ```
-   docker = run -itd -p 80:6080 -e PASSWORD=$YOUR_PASSWORD bistormllc/ubuntu-novnc-dotnet
+   $ docker run -d -p 80:6080 -e PASSWORD=$YOUR_PASSWORD bistormllc/ubuntu-novnc-dotnet
    ```
    Now, you can user your own password to log in.
 
@@ -61,7 +98,7 @@ This image contains 3 input argument:
 
    In default, the user **ubuntu** will not be the sudoer, but if you need, you can use this command:
    ```
-   docker run -itd -p 80:6080 -e SUDO=yes bistormllc/ubuntu-novnc-dotnet
+   docker run -d -p 80:6080 -e SUDO=yes bistormllc/ubuntu-novnc-dotnet
    ```
 
    This command will grant the **sudo** to user **ubuntu**.
@@ -76,7 +113,7 @@ This image contains 3 input argument:
 
    ![alt text](https://github.com/bistormllc/Docker-Ubuntu-Unity-DotNetTools/raw/master/sudo.png "sudo")
 
-   **Caution!!** allow your user as sudoer may cause security issues, use it carefully.
+   **Caution!!** allowing your users access as sudoer may cause security issues.  Please use it carefully.
 
 3. Ngrok
 
@@ -98,7 +135,7 @@ This image contains 3 input argument:
 
    **NGROK=YES**, **NGROK=Yes**, **NGROK=Y**, **NGROK=y** are also supported.
 
-    **Caution!!** this may also cause security issues, use it carefully.
+   **Caution!!** this may also cause security issues, use it carefully.
 
 
 ## Screen size
@@ -118,3 +155,5 @@ docker = restart $CONTAINER_ID
 Can't work properly with gnome-terminal, use XTerm to place it.
 
 Some components of Unity may not work properly with vncserver.
+
+Twitter: @BiStormLLC for more cool stuff or @babelfeed for support 
