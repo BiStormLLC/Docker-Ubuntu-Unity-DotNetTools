@@ -5,7 +5,7 @@ services:
   ubuntu:
     image: bistormllc/ubuntu-novnc-dotnet
     volumes:
-     - .:/var/www
+     - .:/home/ubuntu/projects
     restart: always
     container_name: ubuntu8181
     environment:
